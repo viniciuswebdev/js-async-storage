@@ -7,10 +7,21 @@ function CoolStorage () {
 	};
 
 	this.getItem = function (key) {
-		return this.storage.getItem(key);
+		return this.parseResult(this.storage.getItem(key));
 	};
-}
+
+	this.parseResult = function(result){
+		var result;
+		if (result == 'true'){
+			result = true;
+		}
+		if (result == 'false'){
+			result = false;
+		}
+		return result
+	};
+};
 
 storage = new CoolStorage;
-storage.setItem('wkefpo', 'value');
-console.log(storage.getItem('wkefpo'));
+storage.setItem('key', false);
+console.log(typeof storage.getItem('key'));
