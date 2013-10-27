@@ -7,10 +7,25 @@ function CoolStorage () {
 	};
 
 	this.getItem = function (key) {
-		return JSON.parse(this.storage.getItem(key));
+		return this.parse(this.storage.getItem(key));
+	};
+
+	this.parse = function (result) {
+		return JSON.parse(result);
+	}
+
+	this.getAll = function () {		
+		items = [];
+		for (var i in this.storage){
+			if (i.length){
+				items.push({key:i, value:this.storage.getItem(i)});
+			}
+		}
+		
+		return items;
 	};
 };
 
 storage = new CoolStorage;
-storage.setItem('key', true);
-console.log(typeof storage.getItem('key'));
+storage.setItem('opa', "2342.12");
+console.log(storage.getAll());
