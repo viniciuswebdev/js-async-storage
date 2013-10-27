@@ -1,20 +1,20 @@
-function CoolStorage () {
+SimpleStorage = {
 
-	this.storage = window.localStorage;
+	storage : window.localStorage,
 
-	this.setItem = function (key, value) {
+	setItem : function (key, value) {
 		this.storage.setItem(key, JSON.stringify(value));
-	};
+	},
 
-	this.getItem = function (key) {
+	getItem : function (key) {
 		return this.parse(this.storage.getItem(key));
-	};
+	},
 
-	this.parse = function (result) {
+	parse : function (result) {
 		return JSON.parse(result);
-	}
+	},
 
-	this.getAll = function () {		
+	getAll : function () {		
 		items = [];
 		for (var i in this.storage){
 			if (i.length){
@@ -22,10 +22,24 @@ function CoolStorage () {
 			}
 		}
 		
-		return items;
-	};
+		if(items.length > 0){ 
+			return items;
+		}
+		return undefined;
+	},
+
+	removeItem : function (key) {
+		this.storage.removeItem(key);
+	},
+
+	clear : function () {
+		this.storage.clear();
+	},
+
+	key : function (key) {
+		return this.storage.key(key);
+	},
 };
 
-storage = new CoolStorage;
-storage.setItem('opa', "2342.12");
-console.log(storage.getAll());
+SimpleStorage.setItem("a", "b");
+console.log(SimpleStorage.key(0));
