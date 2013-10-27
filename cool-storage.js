@@ -3,25 +3,14 @@ function CoolStorage () {
 	this.storage = window.localStorage;
 
 	this.setItem = function (key, value) {
-		this.storage.setItem(key, value);
+		this.storage.setItem(key, JSON.stringify(value));
 	};
 
 	this.getItem = function (key) {
-		return this.parseResult(this.storage.getItem(key));
-	};
-
-	this.parseResult = function(result){
-		var result;
-		if (result == 'true'){
-			result = true;
-		}
-		if (result == 'false'){
-			result = false;
-		}
-		return result
+		return JSON.parse(this.storage.getItem(key));
 	};
 };
 
 storage = new CoolStorage;
-storage.setItem('key', false);
+storage.setItem('key', true);
 console.log(typeof storage.getItem('key'));
