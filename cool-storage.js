@@ -39,7 +39,16 @@ SimpleStorage = {
 	key : function (key) {
 		return this.storage.key(key);
 	},
+
+	setTTL : function (key, value, time) {
+		this.setItem(key, value);
+		setTimeout(function() {
+    		SimpleStorage.removeItem(key);
+		}, time)
+	}
+
 };
 
-SimpleStorage.setItem("a", "b");
-console.log(SimpleStorage.key(0));
+console.log(SimpleStorage.getAll());
+
+
