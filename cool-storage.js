@@ -48,7 +48,3 @@ SimpleStorage = {
 	}
 
 };
-
-console.log(SimpleStorage.getAll());
-
-
