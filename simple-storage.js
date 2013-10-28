@@ -49,9 +49,26 @@ SimpleStorage = {
 
 	pushArray : function (key, value) {
 		arr = this.getItem(key);
-		console.log(arr);
 		arr.push(value);
 		this.setItem(key, arr);
+	},
+
+	getAllAsync : function (callback){
+		window.setTimeout(function() {
+   			callback(SimpleStorage.getAll());
+		}, 0);
+	},
+
+	setItemAsync : function (key, value, callback){
+		window.setTimeout(function() {
+   			callback(SimpleStorage.setItem(key, value));
+		}, 0);
+	},
+
+	getItemAsync : function (key, callback){
+		window.setTimeout(function() {
+   			callback(SimpleStorage.getItem(key));
+		}, 0);
 	}
 
 };
