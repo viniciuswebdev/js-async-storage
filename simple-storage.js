@@ -48,3 +48,45 @@ SimpleStorage = {
 	}
 
 };
+
+var Users = {
+    list: [],
+    listeners: {},
+    add: function(name) {
+        this.list.push({name: name});
+        this.dispatch("user-added");
+    },
+    on: function(eventName, listener) {
+        if(!this.listeners[eventName]) this.listeners[eventName] = [];
+        this.listeners[eventName].push(listener);
+    },
+    dispatch: function(eventName) {
+        if(this.listeners[eventName]) {
+            for(var i=0; i<this.listeners[eventName].length; i++) {
+                this.listeners[eventName][i](this);
+            }
+        }
+    },
+    numOfAddedUsers: function() {
+        return this.list.length;
+    }
+}
+
+Users.on("user-added", function() {
+    console.log(Users.numOfAddedUsers());
+});
+
+console.log("a");
+Users.add("Krasimir");
+console.log("b");
+Users.add("Tsonev");
+
+
+
+
+
+
+
+
+
+
