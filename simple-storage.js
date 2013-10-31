@@ -40,10 +40,11 @@ SimpleStorage = {
 		return this.storage.key(key);
 	},
 
-	setTTL : function (key, value, time) {
+	setTTL : function (key, value, time, callback) {
 		this.setItem(key, value);
 		setTimeout(function() {
     		SimpleStorage.removeItem(key);
+    		callback();
 		}, time)
 	},
 
@@ -70,5 +71,4 @@ SimpleStorage = {
    			callback(SimpleStorage.getItem(key));
 		}, 0);
 	}
-
 };
