@@ -2,13 +2,23 @@
 
 A simple javascript library to manage localstorage with some asynchronous functions.
 
+- The async functions are not concurrent.
+- Works only in browsers with localStorage support, there is no fallbacks.
+
 ## API
+
+Include de library:
+
+```html
+<script src="js-async-storage.js"></script>
+```
+Using:
 
 ```javascript
 storage = asyncStorage;
 ```
 
-Setting and getting a item:
+Set and get a item:
 
 ```javascript
 storage.setItem('key', 'value');
@@ -27,7 +37,7 @@ Give the index and get the key name:
 storage.key(0);
 ```
 
-Setting a temporary value:
+Set a temporary value:
 
 ```javascript
 storage.setTTL('key', 'value', 100, function(){
@@ -51,14 +61,12 @@ cars[1] = "Volvo";
 cars[2] = "BMW";
 storage.setItem('cars', cars);
 
-var moreCars = new Array();
-moreCars[0] = "Saab";
-storage.pushArray('cars', moreCars);
+storage.pushArray('cars', 'Fusca');
 ```
 
 With async methods, you can give an instruction and pass a function callback to be called after things done.
 
-Getting all items:
+Get all items:
 
 ```javascript
 storage.getAllAsync(function(result){
@@ -67,7 +75,7 @@ storage.getAllAsync(function(result){
 
 ```
 
-Setting and getting a single value:
+Set and get a single value:
 
 ```javascript
 storage.setItemAsync('key', 'value', function(){
