@@ -84,3 +84,5 @@ storage.setItemAsync('key', 'value', function(){
     });
 });
 ```
+
+Enjoy!!
