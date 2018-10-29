@@ -1,4 +1,4 @@
-#js-async-storage
+# js-async-storage
 
 A simple javascript library to manage localstorage with some asynchronous functions.
 
@@ -84,3 +84,5 @@ storage.setItemAsync('key', 'value', function(){
     });
 });
 ```
+
+Enjoy!!
